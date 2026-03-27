@@ -84,6 +84,7 @@ body {
 	font-weight: 800;
 	font-style: italic;
 	width: 60%;
+	font-size: 16px !important;
 }
 #about-me p {
 	width: 80%;
@@ -91,7 +92,7 @@ body {
 }
 
 #gallery {
-	/*	min-height: 100vh; */
+		/* min-height: 100vh; */
 }
 .title{
 	text-align: center;
@@ -102,7 +103,7 @@ body {
 }
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
 	color: #fff;
-	background-color: #BEB45A;
+	background-color: #69632B;
 	border-radius:0 ;
 }
 .nav-pills .nav-link {
@@ -354,3 +355,8 @@ input[type="submit"] {
 	}
 }
 
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
