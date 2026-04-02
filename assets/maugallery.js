@@ -49,6 +49,11 @@
     navigation: true,
   };
   $.fn.mauGallery.listeners = function (options) {
+    $(".gallery").on("keydown", ".nav-link", function (e) {
+      if (e.key === "Enter" || e.keyCode === 13) {
+        $.fn.mauGallery.methods.filterByTag.call(this);
+      }
+    });
     $(".gallery-item").on("click", function () {
       if (options.lightBox && $(this).prop("tagName") === "IMG") {
         $.fn.mauGallery.methods.openLightBox($(this), options.lightboxId);
@@ -243,3 +248,41 @@
     },
   };
 })(jQuery);
+
+// ----- Code formulaire -----
+$(function () {
+  $("#contactForm").on("submit", function (e) {
+    e.preventDefault();
+
+    // On récupère les valeurs
+    var name = $("#nom").val().trim();
+    var email = $("#email").val().trim();
+    var message = $("#message").val().trim();
+    var errorMessage = "";
+
+    // Vérification des champs
+    if (name === "") errorMessage += "Le nom est obligatoire.<br>";
+    if (email === "") errorMessage += "L'email est obligatoire.<br>";
+    else {
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email))
+        errorMessage += "L'email n'est pas valide.<br>";
+    }
+    if (message === "") errorMessage += "Le message est obligatoire.<br>";
+
+    // Affichage du message
+    if (errorMessage !== "") {
+      $("#formMessage").html(errorMessage).css({
+        color: "red",
+        "margin-top": "10px",
+        "font-weight": "bold",
+      });
+    } else {
+      $("#formMessage").html("Message envoyé !").css({
+        color: "green",
+        "margin-top": "10px",
+        "font-weight": "bold",
+      });
+    }
+  });
+});

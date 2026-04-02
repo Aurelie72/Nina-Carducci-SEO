@@ -9,7 +9,7 @@
     <!-- META SEO -->
 
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://www.monsite.com/page" />
+    <link rel="canonical" href="#" />
     <!-- a revoir lien du site -->
     <link rel="stylesheet" href="./assets/bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="./assets/style.css" />
@@ -403,7 +403,11 @@
           <p>
             N’hésitez pas à m’écrire ! Je vous répondrais en moins de 24 heures
           </p>
-          <form method="post" aria-label="Formulaire de contact">
+          <form
+            method="post"
+            aria-label="Formulaire de contact"
+            id="contactForm"
+          >
             <label for="nom">Nom</label>
             <input type="text" name="nom" id="nom" autocomplete="name" />
             <label for="email">Email</label>
@@ -418,6 +422,7 @@
             ></textarea>
             <input type="submit" value="Envoyer" />
           </form>
+          <div id="formMessage"></div>
         </div>
         <div class="picture right">
           <img
