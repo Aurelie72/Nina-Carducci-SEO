@@ -123,18 +123,15 @@
     prevImage() {
       let activeImage = null;
 
-      // 1. Image actuelle
       $("img.gallery-item").each(function () {
         if ($(this).attr("src") === $(".lightboxImage").attr("src")) {
           activeImage = $(this);
         }
       });
 
-      // 2. Tag actif
       let activeTag = $(".tags-bar span.active-tag").data("images-toggle");
       let imagesCollection = [];
 
-      // 3. Collection filtrée
       $(".item-column").each(function () {
         let img = $(this).children("img");
 
@@ -143,93 +140,19 @@
         }
       });
 
-      // 4. Trouver index
       let index = imagesCollection.findIndex(
         (img) => img.attr("src") === activeImage.attr("src"),
       );
 
-      // ⚠️ Sécurité (si jamais non trouvé)
       if (index === -1) return;
 
-      // 5. Image précédente (circulaire)
       let prev =
         index === 0
           ? imagesCollection[imagesCollection.length - 1]
           : imagesCollection[index - 1];
 
-      // 6. Update
       $(".lightboxImage").attr("src", prev.attr("src"));
     },
-
-    // prevImage() {
-    //   let activeImage = null;
-    //   $("img.gallery-item").each(function () {
-    //     if ($(this).attr("src") === $(".lightboxImage").attr("src")) {
-    //       activeImage = $(this);
-    //     }
-    //   });
-    //   let activeTag = $(".tags-bar span.active-tag").data("images-toggle");
-    //   let imagesCollection = [];
-    //   if (activeTag === "all") {
-    //     $(".item-column").each(function () {
-    //       if ($(this).children("img").length) {
-    //         imagesCollection.push($(this).children("img"));
-    //       }
-    //     });
-    //   } else {
-    //     $(".item-column").each(function () {
-    //       if ($(this).children("img").data("gallery-tag") === activeTag) {
-    //         imagesCollection.push($(this).children("img"));
-    //       }
-    //     });
-    //   }
-    //   let index = 0,
-    //     next = null;
-
-    //   $(imagesCollection).each(function (i) {
-    //     if ($(activeImage).attr("src") === $(this).attr("src")) {
-    //       index = i;
-    //     }
-    //   });
-    //   next =
-    //     imagesCollection[index] ||
-    //     imagesCollection[imagesCollection.length - 1];
-    //   $(".lightboxImage").attr("src", $(next).attr("src"));
-    // },
-
-    // nextImage() {
-    //   let activeImage = null;
-    //   $("img.gallery-item").each(function () {
-    //     if ($(this).attr("src") === $(".lightboxImage").attr("src")) {
-    //       activeImage = $(this);
-    //     }
-    //   });
-    //   let activeTag = $(".tags-bar span.active-tag").data("images-toggle");
-    //   let imagesCollection = [];
-    //   if (activeTag === "all") {
-    //     $(".item-column").each(function () {
-    //       if ($(this).children("img").length) {
-    //         imagesCollection.push($(this).children("img"));
-    //       }
-    //     });
-    //   } else {
-    //     $(".item-column").each(function () {
-    //       if ($(this).children("img").data("gallery-tag") === activeTag) {
-    //         imagesCollection.push($(this).children("img"));
-    //       }
-    //     });
-    //   }
-    //   let index = 0,
-    //     next = null;
-
-    //   $(imagesCollection).each(function (i) {
-    //     if ($(activeImage).attr("src") === $(this).attr("src")) {
-    //       index = i;
-    //     }
-    //   });
-    //   next = imagesCollection[index] || imagesCollection[0];
-    //   $(".lightboxImage").attr("src", $(next).attr("src"));
-    // },
 
     nextImage() {
       let activeImage = null;
@@ -257,7 +180,6 @@
 
       if (index === -1) return;
 
-      // 👉 navigation suivante
       let next =
         index === imagesCollection.length - 1
           ? imagesCollection[0]
@@ -327,18 +249,15 @@
   };
 })(jQuery);
 
-// ----- Code formulaire -----
 $(function () {
   $("#contactForm").on("submit", function (e) {
     e.preventDefault();
 
-    // On récupère les valeurs
     var name = $("#nom").val().trim();
     var email = $("#email").val().trim();
     var message = $("#message").val().trim();
     var errorMessage = "";
 
-    // Vérification des champs
     if (name === "") errorMessage += "Le nom est obligatoire.<br>";
     if (email === "") errorMessage += "L'email est obligatoire.<br>";
     else {
@@ -348,7 +267,6 @@ $(function () {
     }
     if (message === "") errorMessage += "Le message est obligatoire.<br>";
 
-    // Affichage du message
     if (errorMessage !== "") {
       $("#formMessage").html(errorMessage).css({
         color: "red",
